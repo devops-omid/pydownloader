@@ -42,6 +42,7 @@ dev = [
     "pytest-cov", # For checking test coverage
     "black",      # For code formatting
     "flake8",     # For linting
+    "psutil",     # For finding process ID
 ]
 
 [tool.black]
