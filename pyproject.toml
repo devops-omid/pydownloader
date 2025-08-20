@@ -21,7 +21,7 @@ classifiers = [
 
 # Core dependencies required for the application to run
 dependencies = [
-    "typer[all]",
+    "typer",
     "rich",
     "aria2p",
 ]
