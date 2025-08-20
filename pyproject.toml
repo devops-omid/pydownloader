@@ -9,7 +9,7 @@ name = "pydownloader"
 version = "0.1.0"
 description = "A Python-based controller for the aria2c download utility with advanced scheduling features."
 authors = [
-  { name="Omid", email="" },
+  { name="Omid", email="omid@users.noreply.github.com" },
 ]
 readme = "README.md"
 requires-python = ">=3.9"
