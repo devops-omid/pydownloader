@@ -1,6 +1,5 @@
 import pytest
 from configparser import ConfigParser
-# We will create this module in the next step, but we import it now
 from pydownloader import config
 
 # A sample valid configuration for our tests
