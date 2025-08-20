@@ -9,7 +9,7 @@ name = "pydownloader"
 version = "0.1.0"
 description = "A Python-based controller for the aria2c download utility with advanced scheduling features."
 authors = [
-  { name="Your Name", email="you@example.com" },
+  { name="Omid", email="" },
 ]
 readme = "README.md"
 requires-python = ">=3.9"
@@ -27,10 +27,10 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/your-username/pydownloader"
-"Bug Tracker" = "https://github.com/your-username/pydownloader/issues"
+"Homepage" = "https://github.com/devops-omid/pydownloader"
+"Bug Tracker" = "https://github.com/devops-omid/pydownloader/issues"
 
-# Defines the command-line entry point. 
+# Defines the command-line entry point.
 # This allows users to run "pydownloader" directly after installation.
 [project.scripts]
 pydownloader = "pydownloader.cli:main"
@@ -42,4 +42,15 @@ dev = [
     "pytest-cov", # For checking test coverage
     "black",      # For code formatting
     "flake8",     # For linting
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
 ]
