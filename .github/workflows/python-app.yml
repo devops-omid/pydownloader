@@ -1,0 +1,50 @@
+name: Python Application CI
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ "main", "dev" ] # Runs on push to main and dev
+  pull_request:
+    branches: [ "main", "dev" ] # Runs on PRs targeting main and dev
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # We'll test against multiple Python versions
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"] # Added 3.12
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # 1. Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      # 2. Sets up the specified version of Python
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # 3. Installs dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      # 4. Lints with flake8
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      # 5. Runs pytest
+      - name: Test with pytest
+        run: |
+          pytest
