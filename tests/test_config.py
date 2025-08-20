@@ -9,6 +9,7 @@ VALID_CONFIG_CONTENT = """
 dest_folder = /downloads
 connections = 8
 max_download_speed = 10M
+rpc_port = 6800
 
 [schedules]
 s1 = 09:00-17:00-2M
@@ -62,3 +63,21 @@ def test_missing_key(tmp_path):
 
     with pytest.raises(ValueError, match="Missing required key 'dest_folder' in section 'settings'"):
         config.load_config(search_paths=[tmp_path])
+
+def test_missing_rpc_port(tmp_path):
+    """
+    Tests that a ValueError is raised if 'rpc_port' is missing.
+    """
+    # Config content missing the rpc_port
+    invalid_content = """
+    [settings]
+    dest_folder = /downloads
+    connections = 8
+    max_download_speed = 10M
+    """
+    config_file = tmp_path / "config.ini"
+    config_file.write_text(invalid_content)
+
+    with pytest.raises(ValueError, match="Missing required key 'rpc_port' in section 'settings'"):
+        config.load_config(search_paths=[tmp_path])
+

@@ -7,9 +7,15 @@ from typing import List, Optional
 CONFIG_FILES = ["config.ini", ".pydownloader.ini"]
 # Define the required sections and keys for validation
 REQUIRED_SECTIONS = {
-    "settings": ["dest_folder", "connections", "max_download_speed"],
+    "settings": [
+        "dest_folder",
+        "connections",
+        "max_download_speed",
+        "rpc_port"
+    ],
     "schedules": [],
 }
+
 
 def find_config_file(search_paths: List[Path]) -> Optional[Path]:
     """
