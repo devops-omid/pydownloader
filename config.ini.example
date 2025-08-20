@@ -1,0 +1,51 @@
+; This is an example configuration file for PyDownloader.
+; You can copy this file to 'config.ini' in the project root,
+; or to '~/.pydownloader.ini' in your home directory.
+
+[settings]
+; Full path to the destination folder where files will be downloaded.
+; Example: /home/user/Downloads
+dest_folder = 
+
+; Credentials for password-protected websites.
+username = your_username
+; For better security, you can leave the password blank. If you do,
+; the application will securely prompt for it when needed.
+password = 
+
+; Number of parallel connections to use for each download.
+; A value between 8 and 16 is usually a good starting point.
+connections = 8
+
+; Default download speed for times outside of any defined schedule.
+; Use "0" for no limit. Examples: 500K, 2M, 10M
+max_download_speed = 0
+
+; Full path to the log file. Leave this blank to disable logging.
+; Example: /home/user/pydownloader.log
+log_file = 
+
+; --- Advanced Settings for the aria2c RPC Daemon ---
+; These settings are for communication between the Python app and the
+; aria2c background process. You usually don't need to change these.
+rpc_host = localhost
+rpc_port = 6800
+; A secret token for securing the RPC connection.
+; It's highly recommended to set a strong, random password here.
+rpc_secret = your-secret-token
+
+
+[schedules]
+; Define your bandwidth schedules here.
+; The format is: s<number> = HH:MM-HH:MM-SPEED
+; The scheduler will use the *first* matching schedule it finds (s1, s2, etc.).
+
+; Example: Limit speed to 2 Megabytes/sec during work hours (9 AM to 5 PM).
+s1 = 09:00-17:00-2M
+
+; Example: Allow a faster speed of 8 Megabytes/sec in the evening.
+s2 = 17:00-22:00-8M
+
+; Example: Allow full speed overnight (10 PM to 6 AM).
+; This is an example of a schedule that spans midnight.
+s3 = 22:00-06:00-0

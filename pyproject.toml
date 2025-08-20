@@ -1,0 +1,45 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pydownloader"
+version = "0.1.0"
+description = "A Python-based controller for the aria2c download utility with advanced scheduling features."
+authors = [
+  { name="Your Name", email="you@example.com" },
+]
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+# Core dependencies required for the application to run
+dependencies = [
+    "typer[all]",
+    "rich",
+    "aria2p",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/your-username/pydownloader"
+"Bug Tracker" = "https://github.com/your-username/pydownloader/issues"
+
+# Defines the command-line entry point. 
+# This allows users to run "pydownloader" directly after installation.
+[project.scripts]
+pydownloader = "pydownloader.cli:main"
+
+[project.optional-dependencies]
+# Dependencies for development and testing
+dev = [
+    "pytest",
+    "pytest-cov", # For checking test coverage
+    "black",      # For code formatting
+    "flake8",     # For linting
+]
